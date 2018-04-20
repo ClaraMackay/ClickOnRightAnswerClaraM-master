@@ -49,6 +49,7 @@ local secondNumber
 local answer 
 local wrongAnswer1
 local wrongAnswer2
+local wrongAnswer3
 
 -- the text object that will hold the addition equation
 local addEquationTextObject 
@@ -57,6 +58,7 @@ local addEquationTextObject
 local answerTextObject 
 local wrongAnswer1TextObject
 local wrongAnswer2TextObject
+local wrongAnswer3TextObject
 
 -- displays the number correct that the user has
 local numberCorrectText 
@@ -122,9 +124,15 @@ local function DisplayAnswers( )
 
 end
 
--- Function that transitions to Lose Screen
+-- Function that transitions to the You Lose Screen
 local function LoseScreenTransition( )        
     composer.gotoScene( "you_lose", {effect = "zoomInOutFade", time = 1000})
+end 
+
+
+-- Function that transitions to the You Win Screen
+local function LoseScreenTransition( )        
+    composer.gotoScene( "you_win", {effect = "zoomInOutFade", time = 1000})
 end 
 
 -- The function that displays the equation and determines the answer and the wrong answers
@@ -146,6 +154,8 @@ local function DisplayAddEquation()
 end
 
 
+-- Function that displays the text in the bottom right corner, 
+-- and also goes to the "You Lose" screen when you get 3 questions wrong.
 local function RestartScene()
 
     alreadyClickedAnswer = false
@@ -225,6 +235,26 @@ local function TouchListenerWrongAnswer2(touch)
         end
 end
     
+local function TouchListenerWrongAnswer3(touch)
+    -- get the user answer from the text object that was clicked on
+    local userAnswer = wrongAnswer3TextObject.text
+
+      
+        if (touch.phase == "ended") and (alreadyClickedAnswer == false) then
+
+            alreadyClickedAnswer = true
+
+
+            if (answer ~= tonumber(userAnswer)) then
+                -- decrease a life
+                lives = lives - 1
+                -- call RestartScene after 1 second
+                timer.performWithDelay( 1000, RestartScene )            
+            end        
+    
+        end
+end
+
 -- Function that adds the touch listeners to each of the answer objects
 local function AddTextObjectListeners()
 
@@ -278,6 +308,7 @@ function scene:create( event )
     answerTextObject = display.newText("", display.contentWidth*.4, display.contentHeight/2, nil, 50 )
     wrongAnswer1TextObject = display.newText("", display.contentWidth*.3, display.contentHeight/2, nil, 50 )
     wrongAnswer2TextObject = display.newText("", display.contentWidth*.2, display.contentHeight/2, nil, 50 )
+    wrongAnswer3TextObject = display.newText("", display.contentWidth*.2, display.contentHeight/2, nil, 50 )
     numberCorrectText = display.newText("", display.contentWidth*4/5, display.contentHeight*6/7, nil, 25)
 
     -- create the text object that will hold the number of lives
