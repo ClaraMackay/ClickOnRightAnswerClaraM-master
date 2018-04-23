@@ -31,6 +31,15 @@ local scene = composer.newScene( sceneName )
 
 -- local variables for the scene
 local bkg
+-- local variables for the sound
+local youLoseSound = audio.loadSound("Sounds/Kids Booing.mp3")
+local youLoseSoundChannel
+
+-----------------------------------------------------------------------------------------
+-- SOUND
+-----------------------------------------------------------------------------------------
+-- play the sound
+audio.play(youLoseSound)
 
 -----------------------------------------------------------------------------------------
 -- LOCAL FUNCTIONS

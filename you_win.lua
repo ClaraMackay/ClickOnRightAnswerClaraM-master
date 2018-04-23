@@ -34,7 +34,12 @@ local scene = composer.newScene( sceneName )
 
 -- local variables for the scene
 local bkg
-
+local youWinSound = audio.loadSound("Sounds/CorrectAnswerOld.mp3")
+local youWinSoundChannel
+-----------------------------------------------------------------------------------------
+-- SOUND
+-----------------------------------------------------------------------------------------
+audio.play(youWinSound)
 -----------------------------------------------------------------------------------------
 -- LOCAL FUNCTIONS
 -----------------------------------------------------------------------------------------
