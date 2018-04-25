@@ -90,8 +90,6 @@ local correctSound = audio.loadSound("Sounds/CorrectAnswer.mp3")
 local correctSoundChannel
 local incorrectSound = audio.loadSound("Sounds/WrongBuzzer.mp3")
 local incorrectSoundChannel
-local youWinSound = audio.loadSound("Sounds/youWinSound.wav")
-local youWinSoundChannel
 local youLoseSound = audio.loadSound("Sounds/Kids Booing.mp3")
 local youLoseSoundChannel
 
